@@ -356,7 +356,7 @@
             }
         }
 
-        // ฟังก์ชันจัดการการส่งฟอร์ม
+        // ฟังก์ชันจัดการการส่งฟอร์ม (เวอร์ชันใหม่ รองรับการส่งเข้า Google Sheets แน่นอน)
         document.getElementById('comment-form').addEventListener('submit', async (e) => {
             e.preventDefault();
             const btn = document.getElementById('submit-btn');
@@ -367,15 +367,29 @@
             btn.innerHTML = '<i class="fa-solid fa-spinner animate-spin"></i> <span>กำลังบันทึก...</span>';
 
             try {
+                // เปลี่ยนรูปแบบการส่งเป็น URLSearchParams เพื่อไม่ให้ติดปัญหา CORS
+                const formData = new URLSearchParams();
+                formData.append('name', nameInput.value);
+                formData.append('comment', commentInput.value);
+
                 await fetch(SCRIPT_URL, {
                     method: 'POST',
-                    mode: 'no-cors',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({
-                        name: nameInput.value,
-                        comment: commentInput.value
-                    })
+                    body: formData
                 });
+
+                nameInput.value = '';
+                commentInput.value = '';
+                alert('บันทึกความคิดเห็นเรียบร้อยแล้ว!');
+                
+                // รอ 1.5 วินาทีให้ Google Sheets บันทึกเสร็จ แล้วดึงคอมเมนต์มาโชว์
+                setTimeout(loadComments, 1500);
+            } catch (error) {
+                alert('เกิดข้อผิดพลาดในการส่งข้อความ');
+            } finally {
+                btn.disabled = false;
+                btn.innerHTML = '<i class="fa-solid fa-paper-plane"></i> <span>ส่งข้อความ</span>';
+            }
+        });
 
                 nameInput.value = '';
                 commentInput.value = '';
