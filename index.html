@@ -110,10 +110,7 @@
             <div class="lg:col-span-4 flex justify-center">
                 <div class="relative w-64 h-64 sm:w-72 sm:h-72 rounded-2xl overflow-hidden bg-brand-card border-2 border-brand-border shadow-2xl p-2 group">
                     <div class="w-full h-full rounded-xl overflow-hidden relative flex items-center justify-center bg-slate-900">
-                        <!-- Profile Image -->
                         <img id="profile-img" src="profile.jpg" alt="ธีระยุทธ นิลสุวรรณ" class="w-full h-full object-cover object-center" onerror="document.getElementById('profile-img').classList.add('hidden'); document.getElementById('avatar-fallback').classList.remove('hidden');">
-                        
-                        <!-- Fallback Avatar Icon -->
                         <div id="avatar-fallback" class="hidden flex-col items-center justify-center text-slate-500 space-y-3">
                             <i class="fa-solid fa-user-gear text-6xl text-brand-light"></i>
                             <span class="text-xs font-mono text-slate-400">Teerayut Ninsuwan</span>
@@ -130,152 +127,45 @@
                     <i class="fa-solid fa-microchip text-brand-light"></i>
                     <span>ทักษะและความสามารถทางวิศวกรรม (Technical Skills)</span>
                 </h2>
-                <p class="text-slate-400 text-sm mt-1">ความรู้พื้นฐาน เครื่องมือ และเทคโนโลยีด้านระบบเครือข่ายและโปรแกรมมิ่ง</p>
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                <!-- Card 1: Network & Standards -->
                 <div class="bg-brand-card border border-brand-border rounded-xl p-6 hover:border-brand-accent/50 transition duration-300">
                     <div class="w-12 h-12 rounded-lg bg-blue-500/10 border border-blue-500/30 flex items-center justify-center text-brand-light text-xl mb-4">
                         <i class="fa-solid fa-server"></i>
                     </div>
                     <h3 class="text-lg font-bold text-white mb-2">Network & Infrastructure</h3>
-                    <p class="text-xs text-slate-400 mb-4">ความรู้โครงสร้างพื้นฐานระบบเครือข่ายและมาตรฐาน</p>
                     <ul class="space-y-2 text-sm text-slate-300 font-mono">
-                        <li class="flex items-center space-x-2">
-                            <i class="fa-solid fa-check text-brand-light text-xs"></i>
-                            <span>OSI 7 Layer Model</span>
-                        </li>
-                        <li class="flex items-center space-x-2">
-                            <i class="fa-solid fa-check text-brand-light text-xs"></i>
-                            <span>TCP/IP Protocols</span>
-                        </li>
-                        <li class="flex items-center space-x-2">
-                            <i class="fa-solid fa-check text-brand-light text-xs"></i>
-                            <span>ANSI/TIA-942 Standard</span>
-                        </li>
-                        <li class="flex items-center space-x-2">
-                            <i class="fa-solid fa-check text-brand-light text-xs"></i>
-                            <span>Routing & Switching Fundamental</span>
-                        </li>
+                        <li class="flex items-center space-x-2"><i class="fa-solid fa-check text-brand-light text-xs"></i><span>OSI 7 Layer Model</span></li>
+                        <li class="flex items-center space-x-2"><i class="fa-solid fa-check text-brand-light text-xs"></i><span>TCP/IP Protocols</span></li>
+                        <li class="flex items-center space-x-2"><i class="fa-solid fa-check text-brand-light text-xs"></i><span>ANSI/TIA-942 Standard</span></li>
+                        <li class="flex items-center space-x-2"><i class="fa-solid fa-check text-brand-light text-xs"></i><span>Routing & Switching</span></li>
                     </ul>
                 </div>
 
-                <!-- Card 2: Tools & Automation -->
                 <div class="bg-brand-card border border-brand-border rounded-xl p-6 hover:border-brand-accent/50 transition duration-300">
                     <div class="w-12 h-12 rounded-lg bg-indigo-500/10 border border-indigo-500/30 flex items-center justify-center text-indigo-400 text-xl mb-4">
                         <i class="fa-solid fa-terminal"></i>
                     </div>
                     <h3 class="text-lg font-bold text-white mb-2">Tools & Frameworks</h3>
-                    <p class="text-xs text-slate-400 mb-4">เครื่องมือสำหรับการพัฒนา ทดสอบ และบริหารจัดการ</p>
                     <ul class="space-y-2 text-sm text-slate-300 font-mono">
-                        <li class="flex items-center space-x-2">
-                            <i class="fa-solid fa-check text-indigo-400 text-xs"></i>
-                            <span>Cisco pyATS</span>
-                        </li>
-                        <li class="flex items-center space-x-2">
-                            <i class="fa-solid fa-check text-indigo-400 text-xs"></i>
-                            <span>Visual Studio Code</span>
-                        </li>
-                        <li class="flex items-center space-x-2">
-                            <i class="fa-solid fa-check text-indigo-400 text-xs"></i>
-                            <span>Git Version Control</span>
-                        </li>
-                        <li class="flex items-center space-x-2">
-                            <i class="fa-solid fa-check text-indigo-400 text-xs"></i>
-                            <span>Command Line / Shell</span>
-                        </li>
+                        <li class="flex items-center space-x-2"><i class="fa-solid fa-check text-indigo-400 text-xs"></i><span>Cisco pyATS</span></li>
+                        <li class="flex items-center space-x-2"><i class="fa-solid fa-check text-indigo-400 text-xs"></i><span>Visual Studio Code</span></li>
+                        <li class="flex items-center space-x-2"><i class="fa-solid fa-check text-indigo-400 text-xs"></i><span>Git Version Control</span></li>
                     </ul>
                 </div>
 
-                <!-- Card 3: Programming -->
                 <div class="bg-brand-card border border-brand-border rounded-xl p-6 hover:border-brand-accent/50 transition duration-300">
                     <div class="w-12 h-12 rounded-lg bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center text-emerald-400 text-xl mb-4">
                         <i class="fa-solid fa-code"></i>
                     </div>
                     <h3 class="text-lg font-bold text-white mb-2">Programming Languages</h3>
-                    <p class="text-xs text-slate-400 mb-4">ภาษาคอมพิวเตอร์พื้นฐานและการเขียนสคริปต์</p>
                     <ul class="space-y-2 text-sm text-slate-300 font-mono">
-                        <li class="flex items-center space-x-2">
-                            <i class="fa-solid fa-check text-emerald-400 text-xs"></i>
-                            <span>Python (Scripting & Automation)</span>
-                        </li>
-                        <li class="flex items-center space-x-2">
-                            <i class="fa-solid fa-check text-emerald-400 text-xs"></i>
-                            <span>JavaScript</span>
-                        </li>
-                        <li class="flex items-center space-x-2">
-                            <i class="fa-solid fa-check text-emerald-400 text-xs"></i>
-                            <span>HTML5 & CSS3</span>
-                        </li>
+                        <li class="flex items-center space-x-2"><i class="fa-solid fa-check text-emerald-400 text-xs"></i><span>Python (Automation)</span></li>
+                        <li class="flex items-center space-x-2"><i class="fa-solid fa-check text-emerald-400 text-xs"></i><span>JavaScript</span></li>
+                        <li class="flex items-center space-x-2"><i class="fa-solid fa-check text-emerald-400 text-xs"></i><span>HTML5 & CSS3</span></li>
                     </ul>
                 </div>
-            </div>
-        </section>
-
-        <!-- Education Section -->
-        <section id="education" class="space-y-6">
-            <div class="border-b border-brand-border pb-4">
-                <h2 class="text-2xl font-bold text-white flex items-center space-x-3">
-                    <i class="fa-solid fa-graduation-cap text-brand-light"></i>
-                    <span>ประวัติการศึกษา (Education)</span>
-                </h2>
-            </div>
-
-            <div class="bg-brand-card border border-brand-border rounded-xl p-6 sm:p-8 relative overflow-hidden">
-                <div class="absolute top-0 right-0 p-8 opacity-10">
-                    <i class="fa-solid fa-university text-9xl text-white"></i>
-                </div>
-                
-                <div class="relative z-10 space-y-4">
-                    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
-                        <div>
-                            <h3 class="text-xl font-bold text-white">มหาวิทยาลัยเทคโนโลยีราชมงคลพระนคร</h3>
-                            <p class="text-brand-light font-medium">ปริญญาตรี วิศวกรรมศาสตรบัณฑิต (วิศวกรรมคอมพิวเตอร์)</p>
-                        </div>
-                        <span class="inline-block px-3 py-1 bg-slate-800 text-slate-300 border border-slate-700 text-xs font-mono rounded-full self-start sm:self-center">
-                            ภาคปกติ 4 ปี
-                        </span>
-                    </div>
-
-                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-4 border-t border-slate-800 text-sm text-slate-300 font-mono">
-                        <div>
-                            <span class="text-slate-500 block text-xs">คณะ</span>
-                            คณะวิศวกรรมศาสตร์
-                        </div>
-                        <div>
-                            <span class="text-slate-500 block text-xs">สาขาวิชา</span>
-                            วิศวกรรมคอมพิวเตอร์
-                        </div>
-                        <div>
-                            <span class="text-slate-500 block text-xs">รหัสนักศึกษา</span>
-                            056850405128-1
-                        </div>
-                        <div>
-                            <span class="text-slate-500 block text-xs">สถานภาพ</span>
-                            นักศึกษาปกติ
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Network Labs & Projects Section -->
-        <section class="space-y-6">
-            <div class="border-b border-brand-border pb-4">
-                <h2 class="text-2xl font-bold text-white flex items-center space-x-3">
-                    <i class="fa-solid fa-diagram-project text-brand-light"></i>
-                    <span>เครือข่ายปฏิบัติการ & โครงการ (Network Labs & Projects)</span>
-                </h2>
-                <p class="text-slate-400 text-sm mt-1">พื้นที่เตรียมจัดแสดงผลงานการจำลองระบบเครือข่ายและ Network Automation</p>
-            </div>
-
-            <div class="border-2 border-dashed border-brand-border rounded-xl p-8 text-center space-y-3 bg-brand-card/40">
-                <i class="fa-solid fa-network-wired text-4xl text-slate-600"></i>
-                <h3 class="text-lg font-medium text-slate-300">กำลังอยู่ในระหว่างพัฒนาและทดสอบ Lab</h3>
-                <p class="text-sm text-slate-500 max-w-md mx-auto">
-                    เตรียมพบกับโครงการจำลองระบบเครือข่าย Cisco Packet Tracer, การเขียน Python สคริปต์จัดการ Network และการประยุกต์ใช้ pyATS เร็วๆ นี้
-                </p>
             </div>
         </section>
 
@@ -286,11 +176,10 @@
                     <i class="fa-solid fa-comments text-brand-light"></i>
                     <span>ความคิดเห็นและคำติชม (Feedback & Comments)</span>
                 </h2>
-                <p class="text-slate-400 text-sm mt-1">ฝากข้อความ คำติชม หรือข้อเสนอแนะถึงผมได้ที่นี่ครับ</p>
             </div>
 
             <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
-                <!-- Form ส่งคอมเมนต์ -->
+                <!-- Form -->
                 <div class="lg:col-span-5 bg-brand-card border border-brand-border rounded-xl p-6 h-fit">
                     <h3 class="text-lg font-bold text-white mb-4">ส่งข้อความ</h3>
                     <form id="comment-form" class="space-y-4">
@@ -309,14 +198,12 @@
                     </form>
                 </div>
 
-                <!-- กล่องแสดงรายการคอมเมนต์ -->
+                <!-- Display List -->
                 <div class="lg:col-span-7 bg-brand-card border border-brand-border rounded-xl p-6">
                     <h3 class="text-lg font-bold text-white mb-4 flex justify-between items-center">
                         <span>รายการความคิดเห็น</span>
                         <span id="comment-count" class="text-xs font-mono bg-brand-border px-2.5 py-1 rounded-full text-brand-light">0 ข้อความ</span>
                     </h3>
-                    
-                    <!-- โหลดดิ้ง / รายการคอมเมนต์ -->
                     <div id="comments-list" class="space-y-4 max-h-[400px] overflow-y-auto pr-2">
                         <p class="text-slate-500 text-sm text-center py-8">กำลังโหลดความคิดเห็น...</p>
                     </div>
@@ -327,12 +214,8 @@
         <!-- Contact Section -->
         <section id="contact" class="bg-gradient-to-r from-brand-card to-slate-900 border border-brand-border rounded-2xl p-8 text-center space-y-6">
             <h2 class="text-2xl font-bold text-white">ช่องทางการติดต่อ (Contact Information)</h2>
-            <p class="text-slate-400 text-sm max-w-xl mx-auto">
-                ยินดีรับฟังคำแนะนำและโอกาสในการเรียนรู้หรือฝึกงานด้านระบบเครือข่าย สามารถติดต่อผมได้ทางอีเมลและเบอร์โทรศัพท์ครับ
-            </p>
-            
             <div class="flex flex-col sm:flex-row justify-center items-center gap-4 pt-2">
-                <a href="mailto:teerayut-n@rmutp.ac.th" class="w-full sm:w-auto inline-flex items-center justify-center space-x-3 bg-brand-accent hover:bg-blue-600 text-white font-medium px-6 py-3 rounded-xl transition shadow-lg shadow-brand-accent/20">
+                <a href="mailto:teerayut-n@rmutp.ac.th" class="w-full sm:w-auto inline-flex items-center justify-center space-x-3 bg-brand-accent hover:bg-blue-600 text-white font-medium px-6 py-3 rounded-xl transition">
                     <i class="fa-solid fa-envelope"></i>
                     <span>teerayut-n@rmutp.ac.th</span>
                 </a>
@@ -346,16 +229,14 @@
     </main>
 
     <!-- Footer -->
-    <footer class="border-t border-brand-border py-6 bg-brand-dark/90">
-        <div class="max-w-6xl mx-auto px-4 text-center text-xs text-slate-500 font-mono space-y-2">
-            <p>© Teerayut Ninsuwan. All rights reserved.</p>
-            <p>Faculty of Engineering, Rajamangala University of Technology Phra Nakhon</p>
-        </div>
+    <footer class="border-t border-brand-border py-6 bg-brand-dark/90 text-center text-xs text-slate-500 font-mono">
+        <p>© Teerayut Ninsuwan. All rights reserved.</p>
     </footer>
 
     <!-- JavaScript Script -->
     <script>
-        const SCRIPT_URL = "https://script.google.com/macros/s/AKfycby1aAqTI4PwWYek-HKKy4-AvEy_yoVsdstCFZyr8c8Loyvg-ZvIiVq3FeS7xRIC28d_Lg/exec";
+        // วาง Web App URL ที่ได้จาก Google Apps Script ที่นี่
+        const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxxJB89JcF-39f5YgZEcYI0pvaRg390gUmuv9X6PdOJ2nt2K6Rm_jhQcu0U0DM9Jq2mDQ/exec";
 
         function escapeHtml(text) {
             if (!text) return '';
@@ -372,8 +253,7 @@
             const countContainer = document.getElementById('comment-count');
             
             try {
-                const cacheBusterUrl = `${SCRIPT_URL}?t=${new Date().getTime()}`;
-                const response = await fetch(cacheBusterUrl);
+                const response = await fetch(`${SCRIPT_URL}?t=${new Date().getTime()}`);
                 const comments = await response.json();
                 
                 if (countContainer) {
@@ -396,7 +276,7 @@
                 `).join('');
             } catch (error) {
                 console.error("Error loading comments:", error);
-                listContainer.innerHTML = '<p class="text-slate-500 text-sm text-center py-8">ยังไม่มีความคิดเห็น เป็นคนแรกที่คอมเมนต์ได้เลย!</p>';
+                listContainer.innerHTML = '<p class="text-slate-500 text-sm text-center py-8">ไม่สามารถดึงข้อมูลความคิดเห็นได้</p>';
             }
         }
 
@@ -407,31 +287,39 @@
             const commentInput = document.getElementById('comment-text');
 
             btn.disabled = true;
-            btn.innerHTML = '<span>กำลังบันทึก...</span>';
+            btn.innerHTML = '<i class="fa-solid fa-spinner animate-spin"></i> <span>กำลังบันทึก...</span>';
 
             try {
                 const formData = new URLSearchParams();
                 formData.append('name', nameInput.value);
                 formData.append('comment', commentInput.value);
 
+                // ส่งข้อมูลด้วย mode: 'no-cors' เพื่อแก้ปัญหา CORS Block ของ Google Script
                 await fetch(SCRIPT_URL, {
                     method: 'POST',
+                    mode: 'no-cors',
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded'
+                    },
                     body: formData
                 });
 
                 nameInput.value = '';
                 commentInput.value = '';
-                alert('บันทึกความคิดเห็นเรียบร้อยแล้ว!');
+                alert('ส่งความคิดเห็นเรียบร้อยแล้ว!');
                 
-                setTimeout(loadComments, 1000);
+                // รอให้ Google Sheet ประมวลผล 1.5 วินาที แล้วโหลดข้อมูลใหม่
+                setTimeout(loadComments, 1500);
             } catch (error) {
+                console.error(error);
                 alert('เกิดข้อผิดพลาดในการส่งข้อความ');
             } finally {
                 btn.disabled = false;
-                btn.innerHTML = '<span>ส่งข้อความ</span>';
+                btn.innerHTML = '<i class="fa-solid fa-paper-plane"></i> <span>ส่งข้อความ</span>';
             }
         });
 
+        // เรียกใช้งานโหลดความคิดเห็นทันทีเมื่อเปิดหน้าเว็บ
         loadComments();
     </script>
 </body>
