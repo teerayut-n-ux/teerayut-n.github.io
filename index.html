@@ -326,22 +326,33 @@
         // *** วาง Web App URL ที่ก๊อปมาจาก Google Apps Script ตรงนี้ ***
         const SCRIPT_URL = "https://script.google.com/macros/s/AKfycby1aAqTI4PwWYek-HKKy4-AvEy_yoVsdstCFZyr8c8Loyvg-ZvIiVq3FeS7xRIC28d_Lg/exec";
 
-        // ฟังก์ชันดึงคอมเมนต์มาแสดงผล
+        // ฟังก์ชันดึงคอมเมนต์มาแสดงผล (เวอร์ชันแก้ไขปัญหา Cache และ Redirect)
         async function loadComments() {
             const listContainer = document.getElementById('comments-list');
             const countContainer = document.getElementById('comment-count');
             
             try {
-                const response = await fetch(SCRIPT_URL);
+                // เติม ?t= timestamp ต่อท้าย URL เพื่อป้องกันการโดน Cache (Browser จะยอมไปดึงข้อมูลใหม่จาก Sheet ทุกครั้ง)
+                const cacheBusterUrl = `${SCRIPT_URL}?t=${new Date().getTime()}`;
+                
+                const response = await fetch(cacheBusterUrl, {
+                    method: 'GET',
+                    redirect: 'follow'
+                });
+                
                 const comments = await response.json();
                 
-                countContainer.innerText = `${comments.length} ข้อความ`;
+                // อัปเดตจำนวนข้อความ
+                if (countContainer) {
+                    countContainer.innerText = `${comments.length} ข้อความ`;
+                }
                 
-                if (comments.length === 0) {
+                if (!Array.isArray(comments) || comments.length === 0) {
                     listContainer.innerHTML = '<p class="text-slate-500 text-sm text-center py-8">ยังไม่มีความคิดเห็น เป็นคนแรกที่คอมเมนต์ได้เลย!</p>';
                     return;
                 }
 
+                // แสดงรายการคอมเมนต์
                 listContainer.innerHTML = comments.map(c => `
                     <div class="bg-slate-900/80 border border-slate-800 rounded-lg p-4 space-y-2">
                         <div class="flex items-center justify-between">
@@ -352,6 +363,7 @@
                     </div>
                 `).join('');
             } catch (error) {
+                console.error("Error loading comments:", error);
                 listContainer.innerHTML = '<p class="text-red-400 text-sm text-center py-8">ไม่สามารถโหลดความคิดเห็นได้ในขณะนี้</p>';
             }
         }
