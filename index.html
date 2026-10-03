@@ -1,466 +1,309 @@
 <!DOCTYPE html>
-<html lang="th" class="scroll-smooth dark">
+<html lang="th" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ธีระยุทธ นิลสุวรรณ | TEERAYUT NINSUWAN - Computer Engineering RMUTP</title>
+    <title>Teerayut Ninsuwan | Network Engineer Portfolio</title>
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts (Prompt & JetBrains Mono) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&family=Prompt:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
     <script>
         tailwind.config = {
-            darkMode: 'class',
             theme: {
                 extend: {
                     fontFamily: {
-                        sans: ['Prompt', 'Inter', 'sans-serif'],
-                        mono: ['Fira Code', 'monospace']
+                        sans: ['Prompt', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'monospace'],
                     },
                     colors: {
-                        engineering: {
-                            50: '#f0f7ff',
-                            100: '#e0effe',
-                            500: '#0284c7',
-                            600: '#0369a1',
-                            700: '#075985',
-                            800: '#0c4a6e',
-                            900: '#0f3750',
+                        brand: {
+                            dark: '#0a0f1d',
+                            card: '#111827',
+                            border: '#1f2937',
+                            accent: '#0284c7',
+                            light: '#38bdf8',
                         }
                     }
                 }
             }
         }
     </script>
-    <!-- Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <!-- FontAwesome Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
     <style>
-        .glow-effect {
-            box-shadow: 0 0 25px -5px rgba(2, 132, 199, 0.3);
-        }
-        .bg-grid-pattern {
-            background-image: radial-gradient(rgba(2, 132, 199, 0.15) 1px, transparent 1px);
-            background-size: 24px 24px;
+        .bg-grid {
+            background-size: 30px 30px;
+            background-image: 
+                linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
         }
     </style>
 </head>
-<body class="bg-slate-50 dark:bg-slate-950 text-slate-800 dark:text-slate-100 font-sans min-h-screen transition-colors duration-300 flex flex-col justify-between selection:bg-sky-500 selection:text-white">
+<body class="bg-brand-dark text-slate-200 font-sans antialiased bg-grid min-h-screen flex flex-col justify-between selection:bg-brand-accent selection:text-white">
 
-    <!-- Toast Notification -->
-    <div id="toast" class="fixed bottom-5 right-5 z-50 transform translate-y-20 opacity-0 transition-all duration-300 bg-slate-900 text-white dark:bg-slate-100 dark:text-slate-900 px-5 py-3 rounded-xl shadow-2xl flex items-center space-x-3 pointer-events-none border border-slate-700 dark:border-slate-300">
-        <i id="toast-icon" class="fa-solid fa-circle-check text-emerald-500 text-lg"></i>
-        <span id="toast-message" class="text-sm font-medium">คัดลอกเรียบร้อยแล้ว</span>
-    </div>
-
-    <!-- Navigation Header -->
-    <header class="sticky top-0 z-40 backdrop-blur-md bg-white/80 dark:bg-slate-900/80 border-b border-slate-200 dark:border-slate-800 transition-colors">
-        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
-            <a href="#" class="flex items-center space-x-3 group">
-                <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-sky-600 to-indigo-600 flex items-center justify-center text-white font-bold text-lg shadow-md group-hover:scale-105 transition-transform">
-                    TN
-                </div>
-                <div class="flex flex-col">
-                    <span class="font-bold text-slate-900 dark:text-white tracking-tight leading-none group-hover:text-sky-500 transition-colors">TEERAYUT</span>
-                    <span class="text-[10px] text-sky-600 dark:text-sky-400 font-mono tracking-wider font-semibold uppercase">CPE @ RMUTP</span>
-                </div>
-            </a>
-
-            <!-- Navigation Links & Dark Mode Toggle -->
-            <div class="flex items-center space-x-2 sm:space-x-4">
-                <nav class="hidden md:flex items-center space-x-6 text-sm font-medium text-slate-600 dark:text-slate-300">
-                    <a href="#about" class="hover:text-sky-600 dark:hover:text-sky-400 transition-colors">เกี่ยวกับฉัน</a>
-                    <a href="#education" class="hover:text-sky-600 dark:hover:text-sky-400 transition-colors">ประวัติการศึกษา</a>
-                    <a href="#skills" class="hover:text-sky-600 dark:hover:text-sky-400 transition-colors">ทักษะ</a>
-                    <a href="#contact" class="hover:text-sky-600 dark:hover:text-sky-400 transition-colors">ติดต่อ</a>
-                </nav>
-
-                <button id="theme-toggle" type="button" aria-label="Toggle Theme" class="p-2.5 rounded-xl bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors">
-                    <i id="theme-toggle-dark-icon" class="fa-solid fa-moon hidden text-lg"></i>
-                    <i id="theme-toggle-light-icon" class="fa-solid fa-sun text-lg text-amber-400"></i>
-                </button>
+    <!-- Header / Navigation -->
+    <header class="sticky top-0 z-50 backdrop-blur-md bg-brand-dark/80 border-b border-brand-border">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+            <div class="flex items-center space-x-3">
+                <div class="w-3 h-3 rounded-full bg-emerald-500 animate-pulse"></div>
+                <span class="font-mono font-bold text-lg text-white tracking-wider">TEERAYUT<span class="text-brand-light">.NET</span></span>
+            </div>
+            <nav class="hidden md:flex space-x-8 font-medium text-sm text-slate-400">
+                <a href="#about" class="hover:text-brand-light transition-colors">เกี่ยวกับผม</a>
+                <a href="#skills" class="hover:text-brand-light transition-colors">ทักษะวิศวกรรม</a>
+                <a href="#education" class="hover:text-brand-light transition-colors">การศึกษา</a>
+                <a href="#contact" class="hover:text-brand-light transition-colors">การติดต่อ</a>
+            </nav>
+            <div>
+                <a href="mailto:teerayut-n@rmutp.ac.th" class="inline-flex items-center space-x-2 text-xs font-mono bg-brand-accent/20 border border-brand-accent/40 text-brand-light hover:bg-brand-accent hover:text-white px-4 py-2 rounded-md transition-all">
+                    <i class="fa-solid fa-envelope"></i>
+                    <span>CONTACT ME</span>
+                </a>
             </div>
         </div>
     </header>
 
-    <!-- Main Content Container -->
-    <main class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12 space-y-12">
+    <!-- Main Content -->
+    <main class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12 flex-grow space-y-16">
 
-        <!-- Hero / Digital Card Banner Section -->
-        <section id="about" class="relative overflow-hidden rounded-3xl bg-gradient-to-br from-slate-900 via-slate-900 to-slate-800 text-white p-6 sm:p-10 shadow-2xl border border-slate-800 glow-effect">
-            <!-- Background Grid Accent -->
-            <div class="absolute inset-0 bg-grid-pattern opacity-20 pointer-events-none"></div>
-            <div class="absolute -top-24 -right-24 w-72 h-72 bg-sky-500/20 rounded-full blur-3xl pointer-events-none"></div>
-            
-            <div class="relative z-10 flex flex-col md:flex-row items-center md:items-start gap-8">
-                <!-- Avatar / Photo Frame -->
-                <div class="relative group">
-                    <div class="w-36 h-36 sm:w-44 sm:h-44 rounded-2xl bg-gradient-to-tr from-sky-500 to-indigo-500 p-1 shadow-xl">
-                        <div class="w-full h-full rounded-[14px] bg-slate-800 overflow-hidden flex items-center justify-center relative">
-                            <!-- Placeholder Profile Avatar / SVG Vector -->
-                            <div class="w-full h-full bg-slate-800 flex flex-col items-center justify-center text-slate-400">
-                                <i class="fa-solid fa-user-gear text-5xl sm:text-6xl text-sky-400 mb-2"></i>
-                                <span class="text-[11px] font-mono text-slate-400 uppercase tracking-widest">Student Profile</span>
-                            </div>
-                        </div>
-                    </div>
-                    <span class="absolute -bottom-2 -right-2 bg-emerald-500 text-slate-950 text-xs font-bold px-2.5 py-1 rounded-full border-2 border-slate-900 flex items-center gap-1 shadow-lg">
-                        <span class="w-2 h-2 rounded-full bg-slate-950 animate-ping"></span>
-                        นักศึกษาปกติ
-                    </span>
+        <!-- Hero & Profile Section -->
+        <section id="about" class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center pt-4">
+            <div class="lg:col-span-8 space-y-6">
+                <div class="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-brand-border/60 border border-slate-700 text-xs font-mono text-brand-light">
+                    <i class="fa-solid fa-network-wired"></i>
+                    <span>COMPUTER ENGINEERING STUDENT & NETWORK ASPIRANT</span>
                 </div>
+                
+                <h1 class="text-3xl sm:text-5xl font-bold text-white tracking-tight leading-tight">
+                    นายธีระยุทธ นิลสุวรรณ<br>
+                    <span class="text-transparent bg-clip-text bg-gradient-to-r from-brand-light to-blue-500">Network Engineer</span>
+                </h1>
+                
+                <p class="text-slate-300 text-lg leading-relaxed font-light border-l-2 border-brand-accent pl-4 py-1 italic">
+                    "สวัสดีครับผมชื่อนายธีระยุทธ นิลสุวรรณ การได้ลงมือทำตามสิ่งที่เรียนรู้มานั้นสำคัญเป็นยิ่ง"
+                </p>
 
-                <!-- Bio Info -->
-                <div class="flex-1 text-center md:text-left space-y-4">
-                    <div class="space-y-1">
-                        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-mono font-medium bg-sky-500/10 text-sky-400 border border-sky-500/20">
-                            <i class="fa-solid fa-graduation-cap"></i>
-                            <span>ปริญญาตรี ภาคปกติ</span>
-                        </div>
-                        <h1 class="text-2xl sm:text-4xl font-extrabold tracking-tight text-white">
-                            นายธีระยุทธ นิลสุวรรณ
-                        </h1>
-                        <p class="text-lg sm:text-xl font-medium text-sky-400 font-mono">
-                            Mr. TEERAYUT NINSUWAN
-                        </p>
-                    </div>
+                <p class="text-slate-400 text-base leading-relaxed">
+                    นักศึกษาวิศวกรรมคอมพิวเตอร์ มหาวิทยาลัยเทคโนโลยีราชมงคลพระนคร มุ่งมั่นศึกษาและพัฒนาทักษะด้านระบบเครือข่ายคอมพิวเตอร์ (Network Infrastructure) การเขียนโปรแกรมสำหรับ Network Automation และมาตรฐานศูนย์ข้อมูล (Data Center Standards) เพื่อพร้อมก้าวสู่การทำงานในสายงาน Network Engineer
+                </p>
 
-                    <p class="text-slate-300 text-sm sm:text-base leading-relaxed max-w-2xl">
-                        นักศึกษาสาขาวิชา<span class="text-white font-semibold">วิศวกรรมคอมพิวเตอร์</span> คณะวิศวกรรมศาสตร์ มหาวิทยาลัยเทคโนโลยีราชมงคลพระนคร มีความสนใจด้านการพัฒนาซอฟต์แวร์ ระบบเครือข่าย และเทคโนโลยีดิจิทัล
-                    </p>
+                <div class="flex flex-wrap gap-4 pt-2">
+                    <a href="tel:0944569385" class="flex items-center space-x-2 bg-brand-card hover:bg-slate-800 border border-brand-border px-4 py-2.5 rounded-lg text-sm text-slate-200 transition">
+                        <i class="fa-solid fa-phone text-brand-light"></i>
+                        <span>094-456-9385</span>
+                    </a>
+                    <a href="mailto:teerayut-n@rmutp.ac.th" class="flex items-center space-x-2 bg-brand-card hover:bg-slate-800 border border-brand-border px-4 py-2.5 rounded-lg text-sm text-slate-200 transition">
+                        <i class="fa-solid fa-at text-brand-light"></i>
+                        <span>teerayut-n@rmutp.ac.th</span>
+                    </a>
+                </div>
+            </div>
 
-                    <!-- Quick Actions -->
-                    <div class="pt-2 flex flex-wrap gap-3 justify-center md:justify-start">
-                        <button onclick="copyToClipboard('056850405128-1', 'รหัสนักศึกษา')" class="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-sky-600 hover:bg-sky-500 text-white font-medium text-sm transition-all shadow-md active:scale-95">
-                            <i class="fa-solid fa-id-card"></i>
-                            <span>รหัสนักศึกษา: 056850405128-1</span>
-                            <i class="fa-regular fa-copy text-xs opacity-70"></i>
-                        </button>
+            <!-- Profile Picture Container -->
+            <div class="lg:col-span-4 flex justify-center">
+                <div class="relative w-64 h-64 sm:w-72 sm:h-72 rounded-2xl overflow-hidden bg-brand-card border-2 border-brand-border shadow-2xl p-2 group">
+                    <div class="w-full h-full rounded-xl overflow-hidden relative flex items-center justify-center bg-slate-900">
+                        <!-- Profile Image -->
+                        <img id="profile-img" src="profile.jpg" alt="ธีระยุทธ นิลสุวรรณ" class="w-full h-full object-cover object-center" onerror="document.getElementById('profile-img').classList.add('hidden'); document.getElementById('avatar-fallback').classList.remove('hidden');">
                         
-                        <a href="#contact" class="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 font-medium text-sm transition-all active:scale-95">
-                            <i class="fa-solid fa-paper-plane text-sky-400"></i>
-                            <span>ช่องทางติดต่อ</span>
-                        </a>
-
-                        <button onclick="downloadVCard()" class="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 font-medium text-sm transition-all active:scale-95">
-                            <i class="fa-solid fa-address-card text-indigo-400"></i>
-                            <span>บันทึกนามบัตร (vCard)</span>
-                        </button>
+                        <!-- Fallback Avatar Icon -->
+                        <div id="avatar-fallback" class="hidden flex-col items-center justify-center text-slate-500 space-y-3">
+                            <i class="fa-solid fa-user-gear text-6xl text-brand-light"></i>
+                            <span class="text-xs font-mono text-slate-400">Teerayut Ninsuwan</span>
+                        </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Official Education Details Section -->
-        <section id="education" class="space-y-6">
-            <div class="flex items-center justify-between border-b border-slate-200 dark:border-slate-800 pb-3">
-                <h2 class="text-xl sm:text-2xl font-bold flex items-center gap-3">
-                    <span class="w-8 h-8 rounded-lg bg-sky-100 dark:bg-sky-950 text-sky-600 dark:text-sky-400 flex items-center justify-center text-base">
-                        <i class="fa-solid fa-university"></i>
-                    </span>
-                    ข้อมูลสถานภาพนักศึกษา
+        <!-- Technical Skills Section -->
+        <section id="skills" class="space-y-8">
+            <div class="border-b border-brand-border pb-4">
+                <h2 class="text-2xl font-bold text-white flex items-center space-x-3">
+                    <i class="fa-solid fa-microchip text-brand-light"></i>
+                    <span>ทักษะและความสามารถทางวิศวกรรม (Technical Skills)</span>
                 </h2>
-                <span class="text-xs font-mono bg-slate-200 dark:bg-slate-800 text-slate-600 dark:text-slate-400 px-2.5 py-1 rounded-md">RMUTP</span>
+                <p class="text-slate-400 text-sm mt-1">ความรู้พื้นฐาน เครื่องมือ และเทคโนโลยีด้านระบบเครือข่ายและโปรแกรมมิ่ง</p>
             </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-                <!-- Info Item 1 -->
-                <div class="p-5 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm hover:border-sky-500/50 transition-colors group">
-                    <div class="text-xs font-semibold text-slate-400 dark:text-slate-500 uppercase tracking-wider mb-1">รหัสนักศึกษา</div>
-                    <div class="flex items-center justify-between">
-                        <div class="text-lg font-bold font-mono text-slate-900 dark:text-white group-hover:text-sky-600 dark:group-hover:text-sky-400 transition-colors">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <!-- Card 1: Network & Standards -->
+                <div class="bg-brand-card border border-brand-border rounded-xl p-6 hover:border-brand-accent/50 transition duration-300">
+                    <div class="w-12 h-12 rounded-lg bg-blue-500/10 border border-blue-500/30 flex items-center justify-center text-brand-light text-xl mb-4">
+                        <i class="fa-solid fa-server"></i>
+                    </div>
+                    <h3 class="text-lg font-bold text-white mb-2">Network & Infrastructure</h3>
+                    <p class="text-xs text-slate-400 mb-4">ความรู้โครงสร้างพื้นฐานระบบเครือข่ายและมาตรฐาน</p>
+                    <ul class="space-y-2 text-sm text-slate-300 font-mono">
+                        <li class="flex items-center space-x-2">
+                            <i class="fa-solid fa-check text-brand-light text-xs"></i>
+                            <span>OSI 7 Layer Model</span>
+                        </li>
+                        <li class="flex items-center space-x-2">
+                            <i class="fa-solid fa-check text-brand-light text-xs"></i>
+                            <span>TCP/IP Protocols</span>
+                        </li>
+                        <li class="flex items-center space-x-2">
+                            <i class="fa-solid fa-check text-brand-light text-xs"></i>
+                            <span>ANSI/TIA-942 Standard</span>
+                        </li>
+                        <li class="flex items-center space-x-2">
+                            <i class="fa-solid fa-check text-brand-light text-xs"></i>
+                            <span>Routing & Switching Fundamental</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Card 2: Tools & Automation -->
+                <div class="bg-brand-card border border-brand-border rounded-xl p-6 hover:border-brand-accent/50 transition duration-300">
+                    <div class="w-12 h-12 rounded-lg bg-indigo-500/10 border border-indigo-500/30 flex items-center justify-center text-indigo-400 text-xl mb-4">
+                        <i class="fa-solid fa-terminal"></i>
+                    </div>
+                    <h3 class="text-lg font-bold text-white mb-2">Tools & Frameworks</h3>
+                    <p class="text-xs text-slate-400 mb-4">เครื่องมือสำหรับการพัฒนา ทดสอบ และบริหารจัดการ</p>
+                    <ul class="space-y-2 text-sm text-slate-300 font-mono">
+                        <li class="flex items-center space-x-2">
+                            <i class="fa-solid fa-check text-indigo-400 text-xs"></i>
+                            <span>Cisco pyATS</span>
+                        </li>
+                        <li class="flex items-center space-x-2">
+                            <i class="fa-solid fa-check text-indigo-400 text-xs"></i>
+                            <span>Visual Studio Code</span>
+                        </li>
+                        <li class="flex items-center space-x-2">
+                            <i class="fa-solid fa-check text-indigo-400 text-xs"></i>
+                            <span>Git Version Control</span>
+                        </li>
+                        <li class="flex items-center space-x-2">
+                            <i class="fa-solid fa-check text-indigo-400 text-xs"></i>
+                            <span>Command Line / Shell</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Card 3: Programming -->
+                <div class="bg-brand-card border border-brand-border rounded-xl p-6 hover:border-brand-accent/50 transition duration-300">
+                    <div class="w-12 h-12 rounded-lg bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center text-emerald-400 text-xl mb-4">
+                        <i class="fa-solid fa-code"></i>
+                    </div>
+                    <h3 class="text-lg font-bold text-white mb-2">Programming Languages</h3>
+                    <p class="text-xs text-slate-400 mb-4">ภาษาคอมพิวเตอร์พื้นฐานและการเขียนสคริปต์</p>
+                    <ul class="space-y-2 text-sm text-slate-300 font-mono">
+                        <li class="flex items-center space-x-2">
+                            <i class="fa-solid fa-check text-emerald-400 text-xs"></i>
+                            <span>Python (Scripting & Automation)</span>
+                        </li>
+                        <li class="flex items-center space-x-2">
+                            <i class="fa-solid fa-check text-emerald-400 text-xs"></i>
+                            <span>JavaScript</span>
+                        </li>
+                        <li class="flex items-center space-x-2">
+                            <i class="fa-solid fa-check text-emerald-400 text-xs"></i>
+                            <span>HTML5 & CSS3</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Education Section -->
+        <section id="education" class="space-y-6">
+            <div class="border-b border-brand-border pb-4">
+                <h2 class="text-2xl font-bold text-white flex items-center space-x-3">
+                    <i class="fa-solid fa-graduation-cap text-brand-light"></i>
+                    <span>ประวัติการศึกษา (Education)</span>
+                </h2>
+            </div>
+
+            <div class="bg-brand-card border border-brand-border rounded-xl p-6 sm:p-8 relative overflow-hidden">
+                <div class="absolute top-0 right-0 p-8 opacity-10">
+                    <i class="fa-solid fa-university text-9xl text-white"></i>
+                </div>
+                
+                <div class="relative z-10 space-y-4">
+                    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+                        <div>
+                            <h3 class="text-xl font-bold text-white">มหาวิทยาลัยเทคโนโลยีราชมงคลพระนคร</h3>
+                            <p class="text-brand-light font-medium">ปริญญาตรี วิศวกรรมศาสตรบัณฑิต (วิศวกรรมคอมพิวเตอร์)</p>
+                        </div>
+                        <span class="inline-block px-3 py-1 bg-slate-800 text-slate-300 border border-slate-700 text-xs font-mono rounded-full self-start sm:self-center">
+                            ภาคปกติ 4 ปี
+                        </span>
+                    </div>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-4 border-t border-slate-800 text-sm text-slate-300 font-mono">
+                        <div>
+                            <span class="text-slate-500 block text-xs">คณะ</span>
+                            คณะวิศวกรรมศาสตร์
+                        </div>
+                        <div>
+                            <span class="text-slate-500 block text-xs">สาขาวิชา</span>
+                            วิศวกรรมคอมพิวเตอร์
+                        </div>
+                        <div>
+                            <span class="text-slate-500 block text-xs">รหัสนักศึกษา</span>
                             056850405128-1
                         </div>
-                        <button onclick="copyToClipboard('056850405128-1', 'รหัสนักศึกษา')" class="p-2 text-slate-400 hover:text-sky-500 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors">
-                            <i class="fa-regular fa-copy"></i>
-                        </button>
-                    </div>
-                </div>
-
-                <!-- Info Item 2 -->
-                <div class="p-5 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm hover:border-sky-500/50 transition-colors">
-                    <div class="text-xs font-semibold text-slate-400 dark:text-slate-500 uppercase tracking-wider mb-1">สถาบันการศึกษา</div>
-                    <div class="text-base font-bold text-slate-900 dark:text-white">
-                        มหาวิทยาลัยเทคโนโลยีราชมงคลพระนคร
-                    </div>
-                    <div class="text-xs text-slate-500 dark:text-slate-400 mt-0.5">Rajamangala University of Technology Phra Nakhon</div>
-                </div>
-
-                <!-- Info Item 3 -->
-                <div class="p-5 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm hover:border-sky-500/50 transition-colors">
-                    <div class="text-xs font-semibold text-slate-400 dark:text-slate-500 uppercase tracking-wider mb-1">คณะ</div>
-                    <div class="text-base font-bold text-slate-900 dark:text-white">
-                        คณะวิศวกรรมศาสตร์
-                    </div>
-                    <div class="text-xs text-slate-500 dark:text-slate-400 mt-0.5">Faculty of Engineering</div>
-                </div>
-
-                <!-- Info Item 4 -->
-                <div class="p-5 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm hover:border-sky-500/50 transition-colors">
-                    <div class="text-xs font-semibold text-slate-400 dark:text-slate-500 uppercase tracking-wider mb-1">สาขาวิชา</div>
-                    <div class="text-base font-bold text-sky-600 dark:text-sky-400">
-                        วิศวกรรมคอมพิวเตอร์
-                    </div>
-                    <div class="text-xs text-slate-500 dark:text-slate-400 mt-0.5">Computer Engineering</div>
-                </div>
-
-                <!-- Info Item 5 -->
-                <div class="p-5 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm hover:border-sky-500/50 transition-colors">
-                    <div class="text-xs font-semibold text-slate-400 dark:text-slate-500 uppercase tracking-wider mb-1">หลักสูตร / ระดับการศึกษา</div>
-                    <div class="text-base font-bold text-slate-900 dark:text-white">
-                        วิศวกรรมศาสตรบัณฑิต
-                    </div>
-                    <div class="text-xs text-slate-500 dark:text-slate-400 mt-0.5">ปริญญาตรี 4 ปี ภาคปกติ</div>
-                </div>
-
-                <!-- Info Item 6 -->
-                <div class="p-5 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm hover:border-sky-500/50 transition-colors">
-                    <div class="text-xs font-semibold text-slate-400 dark:text-slate-500 uppercase tracking-wider mb-1">สถานภาพนักศึกษา</div>
-                    <div class="flex items-center gap-2">
-                        <span class="w-2.5 h-2.5 rounded-full bg-emerald-500"></span>
-                        <span class="text-base font-bold text-slate-900 dark:text-white">นักศึกษาปกติ</span>
-                    </div>
-                    <div class="text-xs text-slate-500 dark:text-slate-400 mt-0.5">อยู่ในช่วงการศึกษาตามแผน</div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Computer Engineering Skills Section -->
-        <section id="skills" class="space-y-6">
-            <div class="flex items-center justify-between border-b border-slate-200 dark:border-slate-800 pb-3">
-                <h2 class="text-xl sm:text-2xl font-bold flex items-center gap-3">
-                    <span class="w-8 h-8 rounded-lg bg-indigo-100 dark:bg-indigo-950 text-indigo-600 dark:text-indigo-400 flex items-center justify-center text-base">
-                        <i class="fa-solid fa-code"></i>
-                    </span>
-                    ความสนใจและทักษะทางคอมพิวเตอร์
-                </h2>
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <!-- Programming & Web Development -->
-                <div class="p-6 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 space-y-4">
-                    <h3 class="font-bold text-lg text-slate-900 dark:text-white flex items-center gap-2">
-                        <i class="fa-solid fa-laptop-code text-sky-500"></i>
-                        การเขียนโปรแกรม & การพัฒนาเว็บ
-                    </h3>
-                    <div class="flex flex-wrap gap-2">
-                        <span class="px-3 py-1.5 rounded-xl bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 text-sm font-medium border border-slate-200 dark:border-slate-700 flex items-center gap-1.5">
-                            <i class="fa-brands fa-html5 text-orange-500"></i> HTML5 / CSS3
-                        </span>
-                        <span class="px-3 py-1.5 rounded-xl bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 text-sm font-medium border border-slate-200 dark:border-slate-700 flex items-center gap-1.5">
-                            <i class="fa-brands fa-js text-yellow-500"></i> JavaScript
-                        </span>
-                        <span class="px-3 py-1.5 rounded-xl bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 text-sm font-medium border border-slate-200 dark:border-slate-700 flex items-center gap-1.5">
-                            <i class="fa-brands fa-python text-blue-500"></i> Python
-                        </span>
-                        <span class="px-3 py-1.5 rounded-xl bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 text-sm font-medium border border-slate-200 dark:border-slate-700 flex items-center gap-1.5">
-                            <i class="fa-solid fa-c text-sky-600"></i> C / C++
-                        </span>
-                        <span class="px-3 py-1.5 rounded-xl bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 text-sm font-medium border border-slate-200 dark:border-slate-700 flex items-center gap-1.5">
-                            <i class="fa-brands fa-git-alt text-red-500"></i> Git & GitHub
-                        </span>
-                    </div>
-                </div>
-
-                <!-- Hardware & Network -->
-                <div class="p-6 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 space-y-4">
-                    <h3 class="font-bold text-lg text-slate-900 dark:text-white flex items-center gap-2">
-                        <i class="fa-solid fa-network-wired text-indigo-500"></i>
-                        ระบบเครือข่าย & ฮาร์ดแวร์
-                    </h3>
-                    <div class="flex flex-wrap gap-2">
-                        <span class="px-3 py-1.5 rounded-xl bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 text-sm font-medium border border-slate-200 dark:border-slate-700 flex items-center gap-1.5">
-                            <i class="fa-solid fa-microchip text-purple-500"></i> Embedded Systems
-                        </span>
-                        <span class="px-3 py-1.5 rounded-xl bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 text-sm font-medium border border-slate-200 dark:border-slate-700 flex items-center gap-1.5">
-                            <i class="fa-solid fa-server text-emerald-500"></i> Computer Networking
-                        </span>
-                        <span class="px-3 py-1.5 rounded-xl bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 text-sm font-medium border border-slate-200 dark:border-slate-700 flex items-center gap-1.5">
-                            <i class="fa-brands fa-linux text-yellow-600"></i> Linux Basics
-                        </span>
-                        <span class="px-3 py-1.5 rounded-xl bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 text-sm font-medium border border-slate-200 dark:border-slate-700 flex items-center gap-1.5">
-                            <i class="fa-solid fa-database text-teal-500"></i> Database Systems
-                        </span>
+                        <div>
+                            <span class="text-slate-500 block text-xs">สถานภาพ</span>
+                            นักศึกษาปกติ
+                        </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Contact & Digital Business Card Section -->
-        <section id="contact" class="space-y-6">
-            <div class="flex items-center justify-between border-b border-slate-200 dark:border-slate-800 pb-3">
-                <h2 class="text-xl sm:text-2xl font-bold flex items-center gap-3">
-                    <span class="w-8 h-8 rounded-lg bg-emerald-100 dark:bg-emerald-950 text-emerald-600 dark:text-emerald-400 flex items-center justify-center text-base">
-                        <i class="fa-solid fa-address-book"></i>
-                    </span>
-                    การติดต่อ & สื่อสังคมออนไลน์
+        <!-- Future Showcase / Lab Projects Placeholder -->
+        <section class="space-y-6">
+            <div class="border-b border-brand-border pb-4">
+                <h2 class="text-2xl font-bold text-white flex items-center space-x-3">
+                    <i class="fa-solid fa-diagram-project text-brand-light"></i>
+                    <span>เครือข่ายปฏิบัติการ & โครงการ (Network Labs & Projects)</span>
                 </h2>
+                <p class="text-slate-400 text-sm mt-1">พื้นที่เตรียมจัดแสดงผลงานการจำลองระบบเครือข่ายและ Network Automation</p>
             </div>
 
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-                <!-- Email -->
-                <a href="mailto:teerayut.ninsuwan@rmutp.ac.th" class="p-5 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 hover:border-sky-500 transition-all flex flex-col justify-between group">
-                    <div class="flex items-center justify-between mb-3">
-                        <div class="w-10 h-10 rounded-xl bg-sky-50 dark:bg-sky-950 text-sky-600 dark:text-sky-400 flex items-center justify-center text-lg group-hover:scale-110 transition-transform">
-                            <i class="fa-solid fa-envelope"></i>
-                        </div>
-                        <i class="fa-solid fa-arrow-up-right-from-square text-xs text-slate-400 group-hover:text-sky-500"></i>
-                    </div>
-                    <div>
-                        <div class="text-xs text-slate-400 font-medium">อีเมลสถาบัน / ติดต่อ</div>
-                        <div class="text-sm font-bold text-slate-900 dark:text-white truncate">
-                            teerayut.n@rmutp.ac.th
-                        </div>
-                    </div>
-                </a>
+            <div class="border-2 border-dashed border-brand-border rounded-xl p-8 text-center space-y-3 bg-brand-card/40">
+                <i class="fa-solid fa-network-wired text-4xl text-slate-600"></i>
+                <h3 class="text-lg font-medium text-slate-300">กำลังอยู่ในระหว่างพัฒนาและทดสอบ Lab</h3>
+                <p class="text-sm text-slate-500 max-w-md mx-auto">
+                    เตรียมพบกับโครงการจำลองระบบเครือข่าย Cisco Packet Tracer, การเขียน Python สคริปต์จัดการ Network และการประยุกต์ใช้ pyATS เร็วๆ นี้
+                </p>
+            </div>
+        </section>
 
-                <!-- GitHub -->
-                <a href="https://github.com" target="_blank" rel="noopener noreferrer" class="p-5 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 hover:border-slate-700 dark:hover:border-slate-300 transition-all flex flex-col justify-between group">
-                    <div class="flex items-center justify-between mb-3">
-                        <div class="w-10 h-10 rounded-xl bg-slate-100 dark:bg-slate-800 text-slate-900 dark:text-white flex items-center justify-center text-lg group-hover:scale-110 transition-transform">
-                            <i class="fa-brands fa-github"></i>
-                        </div>
-                        <i class="fa-solid fa-arrow-up-right-from-square text-xs text-slate-400 group-hover:text-slate-900 dark:group-hover:text-white"></i>
-                    </div>
-                    <div>
-                        <div class="text-xs text-slate-400 font-medium">เก็บผลงานโค้ด</div>
-                        <div class="text-sm font-bold text-slate-900 dark:text-white truncate">
-                            GitHub Profile
-                        </div>
-                    </div>
+        <!-- Contact Section -->
+        <section id="contact" class="bg-gradient-to-r from-brand-card to-slate-900 border border-brand-border rounded-2xl p-8 text-center space-y-6">
+            <h2 class="text-2xl font-bold text-white">ช่องทางการติดต่อ (Contact Information)</h2>
+            <p class="text-slate-400 text-sm max-w-xl mx-auto">
+                ยินดีรับฟังคำแนะนำและโอกาสในการเรียนรู้หรือฝึกงานด้านระบบเครือข่าย สามารถติดต่อผมได้ทางอีเมลและเบอร์โทรศัพท์ครับ
+            </p>
+            
+            <div class="flex flex-col sm:flex-row justify-center items-center gap-4 pt-2">
+                <a href="mailto:teerayut-n@rmutp.ac.th" class="w-full sm:w-auto inline-flex items-center justify-center space-x-3 bg-brand-accent hover:bg-blue-600 text-white font-medium px-6 py-3 rounded-xl transition shadow-lg shadow-brand-accent/20">
+                    <i class="fa-solid fa-envelope"></i>
+                    <span>teerayut-n@rmutp.ac.th</span>
                 </a>
-
-                <!-- Facebook / Social -->
-                <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" class="p-5 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 hover:border-blue-500 transition-all flex flex-col justify-between group">
-                    <div class="flex items-center justify-between mb-3">
-                        <div class="w-10 h-10 rounded-xl bg-blue-50 dark:bg-blue-950 text-blue-600 dark:text-blue-400 flex items-center justify-center text-lg group-hover:scale-110 transition-transform">
-                            <i class="fa-brands fa-facebook"></i>
-                        </div>
-                        <i class="fa-solid fa-arrow-up-right-from-square text-xs text-slate-400 group-hover:text-blue-500"></i>
-                    </div>
-                    <div>
-                        <div class="text-xs text-slate-400 font-medium">โซเชียลมีเดีย</div>
-                        <div class="text-sm font-bold text-slate-900 dark:text-white truncate">
-                            Facebook
-                        </div>
-                    </div>
+                <a href="tel:0944569385" class="w-full sm:w-auto inline-flex items-center justify-center space-x-3 bg-slate-800 hover:bg-slate-700 text-white font-medium px-6 py-3 rounded-xl border border-slate-700 transition">
+                    <i class="fa-solid fa-phone"></i>
+                    <span>094-456-9385</span>
                 </a>
-
-                <!-- Copy Link Button -->
-                <button onclick="copyToClipboard(window.location.href, 'ลิงก์เว็บไซต์')" class="p-5 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 hover:border-emerald-500 transition-all flex flex-col justify-between text-left group">
-                    <div class="flex items-center justify-between mb-3">
-                        <div class="w-10 h-10 rounded-xl bg-emerald-50 dark:bg-emerald-950 text-emerald-600 dark:text-emerald-400 flex items-center justify-center text-lg group-hover:scale-110 transition-transform">
-                            <i class="fa-solid fa-share-nodes"></i>
-                        </div>
-                        <i class="fa-regular fa-copy text-xs text-slate-400 group-hover:text-emerald-500"></i>
-                    </div>
-                    <div>
-                        <div class="text-xs text-slate-400 font-medium">แชร์หน้าเว็บนี้</div>
-                        <div class="text-sm font-bold text-slate-900 dark:text-white truncate">
-                            คัดลอก URL เว็บไซต์
-                        </div>
-                    </div>
-                </button>
             </div>
         </section>
 
     </main>
 
-    <!-- Footer Section -->
-    <footer class="mt-12 border-t border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900/50 py-8 text-center text-xs text-slate-500 dark:text-slate-400">
-        <div class="max-w-5xl mx-auto px-4 space-y-2">
-            <p>© 2026 นายธีระยุทธ นิลสุวรรณ (Teerayut Ninsuwan) — Computer Engineering RMUTP</p>
-            <p class="font-mono text-[11px] text-slate-400">Gmail: teerayut-n@rmutp.ac.th | Built with HTML & Tailwind CSS</p>
+    <!-- Footer -->
+    <footer class="border-t border-brand-border py-6 bg-brand-dark/90">
+        <div class="max-w-6xl mx-auto px-4 text-center text-xs text-slate-500 font-mono space-y-2">
+            <p>© Teerayut Ninsuwan. All rights reserved.</p>
+            <p>Faculty of Engineering, Rajamangala University of Technology Phra Nakhon</p>
         </div>
     </footer>
 
-    <!-- Interactive JavaScript -->
-    <script>
-        // Dark Mode / Light Mode Toggle
-        const themeToggleBtn = document.getElementById('theme-toggle');
-        const darkIcon = document.getElementById('theme-toggle-dark-icon');
-        const lightIcon = document.getElementById('theme-toggle-light-icon');
-
-        // Check local theme storage or system preferences
-        if (localStorage.getItem('color-theme') === 'light' || (!('color-theme' in localStorage) && window.matchMedia('(prefers-color-scheme: light)').matches)) {
-            document.documentElement.classList.remove('dark');
-            lightIcon.classList.add('hidden');
-            darkIcon.classList.remove('hidden');
-        } else {
-            document.documentElement.classList.add('dark');
-            darkIcon.classList.add('hidden');
-            lightIcon.classList.remove('hidden');
-        }
-
-        themeToggleBtn.addEventListener('click', function() {
-            darkIcon.classList.toggle('hidden');
-            lightIcon.classList.toggle('hidden');
-
-            if (document.documentElement.classList.contains('dark')) {
-                document.documentElement.classList.remove('dark');
-                localStorage.setItem('color-theme', 'light');
-            } else {
-                document.documentElement.classList.add('dark');
-                localStorage.setItem('color-theme', 'dark');
-            }
-        });
-
-        // Copy to clipboard helper
-        function copyToClipboard(text, label) {
-            if (navigator.clipboard && window.isSecureContext) {
-                navigator.clipboard.writeText(text);
-            } else {
-                const textarea = document.createElement('textarea');
-                textarea.value = text;
-                textarea.style.position = 'fixed';
-                textarea.style.opacity = '0';
-                document.body.appendChild(textarea);
-                textarea.select();
-                document.execCommand('copy');
-                document.body.removeChild(textarea);
-            }
-            showToast(`คัดลอก ${label} เรียบร้อยแล้ว`);
-        }
-
-        // Show toast notification
-        function showToast(message) {
-            const toast = document.getElementById('toast');
-            const toastMsg = document.getElementById('toast-message');
-            
-            toastMsg.textContent = message;
-            toast.classList.remove('translate-y-20', 'opacity-0');
-            toast.classList.add('translate-y-0', 'opacity-100');
-
-            setTimeout(() => {
-                toast.classList.remove('translate-y-0', 'opacity-100');
-                toast.classList.add('translate-y-20', 'opacity-0');
-            }, 2500);
-        }
-
-        // Download vCard Contact File
-        function downloadVCard() {
-            const vCardData = `BEGIN:VCARD
-VERSION:3.0
-N:Ninsuwan;Teerayut;;Mr.;
-FN:นายธีระยุทธ นิลสุวรรณ (Teerayut Ninsuwan)
-ORG:มหาวิทยาลัยเทคโนโลยีราชมงคลพระนคร;คณะวิศวกรรมศาสตร์
-TITLE:นักศึกษาวิศวกรรมคอมพิวเตอร์ (056850405128-1)
-EMAIL;TYPE=INTERNET,HOME:teerayut.ninsuwan@rmutp.ac.th
-NOTE:นักศึกษาปริญญาตรี ภาคปกติ สาขาวิชาวิศวกรรมคอมพิวเตอร์
-END:VCARD`;
-
-            const blob = new Blob([vCardData], { type: 'text/vcard;charset=utf-8;' });
-            const url = URL.createObjectURL(blob);
-            const link = document.createElement('a');
-            link.href = url;
-            link.setAttribute('download', 'Teerayut_Ninsuwan.vcf');
-            document.body.appendChild(link);
-            link.click();
-            document.body.removeChild(link);
-            showToast('ดาวน์โหลดนามบัตรดิจิทัลเรียบร้อยแล้ว');
-        }
-    </script>
 </body>
 </html>
