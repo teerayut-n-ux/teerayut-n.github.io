@@ -323,107 +323,86 @@
         </section>
 
     <script>
-        // *** วาง Web App URL ที่ก๊อปมาจาก Google Apps Script ตรงนี้ ***
-        const SCRIPT_URL = "https://script.google.com/macros/s/AKfycby1aAqTI4PwWYek-HKKy4-AvEy_yoVsdstCFZyr8c8Loyvg-ZvIiVq3FeS7xRIC28d_Lg/exec";
+        <script>
+    const SCRIPT_URL = "https://script.google.com/macros/s/AKfycby1aAqTI4PwWYek-HKKy4-AvEy_yoVsdstCFZyr8c8Loyvg-ZvIiVq3FeS7xRIC28d_Lg/exec";
 
-        // ฟังก์ชันดึงคอมเมนต์มาแสดงผล (เวอร์ชันแก้ไขปัญหา Cache และ Redirect)
-        async function loadComments() {
-            const listContainer = document.getElementById('comments-list');
-            const countContainer = document.getElementById('comment-count');
+    function escapeHtml(text) {
+        if (!text) return '';
+        return String(text)
+            .replace(/&/g, "&amp;")
+            .replace(/</g, "&lt;")
+            .replace(/>/g, "&gt;")
+            .replace(/"/g, "&quot;")
+            .replace(/'/g, "&#039;");
+    }
+
+    async function loadComments() {
+        const listContainer = document.getElementById('comments-list');
+        const countContainer = document.getElementById('comment-count');
+        
+        try {
+            const cacheBusterUrl = `${SCRIPT_URL}?t=${new Date().getTime()}`;
+            const response = await fetch(cacheBusterUrl);
+            const comments = await response.json();
             
-            try {
-                // เติม ?t= timestamp ต่อท้าย URL เพื่อป้องกันการโดน Cache (Browser จะยอมไปดึงข้อมูลใหม่จาก Sheet ทุกครั้ง)
-                const cacheBusterUrl = `${SCRIPT_URL}?t=${new Date().getTime()}`;
-                
-                const response = await fetch(cacheBusterUrl, {
-                    method: 'GET',
-                    redirect: 'follow'
-                });
-                
-                const comments = await response.json();
-                
-                // อัปเดตจำนวนข้อความ
-                if (countContainer) {
-                    countContainer.innerText = `${comments.length} ข้อความ`;
-                }
-                
-                if (!Array.isArray(comments) || comments.length === 0) {
-                    listContainer.innerHTML = '<p class="text-slate-500 text-sm text-center py-8">ยังไม่มีความคิดเห็น เป็นคนแรกที่คอมเมนต์ได้เลย!</p>';
-                    return;
-                }
+            if (countContainer) {
+                countContainer.innerText = `${comments.length} ข้อความ`;
+            }
+            
+            if (!Array.isArray(comments) || comments.length === 0) {
+                listContainer.innerHTML = '<p class="text-slate-500 text-sm text-center py-8">ยังไม่มีความคิดเห็น เป็นคนแรกที่คอมเมนต์ได้เลย!</p>';
+                return;
+            }
 
-                // แสดงรายการคอมเมนต์
-                listContainer.innerHTML = comments.map(c => `
-                    <div class="bg-slate-900/80 border border-slate-800 rounded-lg p-4 space-y-2">
-                        <div class="flex items-center justify-between">
-                            <span class="font-bold text-sm text-brand-light">${escapeHtml(c.name)}</span>
-                            <span class="text-[10px] font-mono text-slate-500">${escapeHtml(c.timestamp)}</span>
-                        </div>
-                        <p class="text-slate-300 text-sm leading-relaxed">${escapeHtml(c.comment)}</p>
+            listContainer.innerHTML = comments.map(c => `
+                <div class="bg-slate-900/80 border border-slate-800 rounded-lg p-4 space-y-2 text-left">
+                    <div class="flex items-center justify-between">
+                        <span class="font-bold text-sm text-cyan-400">${escapeHtml(c.name)}</span>
+                        <span class="text-[10px] font-mono text-slate-500">${escapeHtml(c.timestamp)}</span>
                     </div>
-                `).join('');
-            } catch (error) {
-                console.error("Error loading comments:", error);
-                listContainer.innerHTML = '<p class="text-red-400 text-sm text-center py-8">ไม่สามารถโหลดความคิดเห็นได้ในขณะนี้</p>';
-            }
+                    <p class="text-slate-300 text-sm leading-relaxed">${escapeHtml(c.comment)}</p>
+                </div>
+            `).join('');
+        } catch (error) {
+            console.error("Error loading comments:", error);
+            listContainer.innerHTML = '<p class="text-slate-500 text-sm text-center py-8">ยังไม่มีความคิดเห็น เป็นคนแรกที่คอมเมนต์ได้เลย!</p>';
         }
+    }
 
-        // ฟังก์ชันจัดการการส่งฟอร์ม (เวอร์ชันใหม่ รองรับการส่งเข้า Google Sheets แน่นอน)
-        document.getElementById('comment-form').addEventListener('submit', async (e) => {
-            e.preventDefault();
-            const btn = document.getElementById('submit-btn');
-            const nameInput = document.getElementById('comment-name');
-            const commentInput = document.getElementById('comment-text');
+    document.getElementById('comment-form').addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const btn = document.getElementById('submit-btn');
+        const nameInput = document.getElementById('comment-name');
+        const commentInput = document.getElementById('comment-text');
 
-            btn.disabled = true;
-            btn.innerHTML = '<i class="fa-solid fa-spinner animate-spin"></i> <span>กำลังบันทึก...</span>';
+        btn.disabled = true;
+        btn.innerHTML = '<span>กำลังบันทึก...</span>';
 
-            try {
-                // เปลี่ยนรูปแบบการส่งเป็น URLSearchParams เพื่อไม่ให้ติดปัญหา CORS
-                const formData = new URLSearchParams();
-                formData.append('name', nameInput.value);
-                formData.append('comment', commentInput.value);
+        try {
+            const formData = new URLSearchParams();
+            formData.append('name', nameInput.value);
+            formData.append('comment', commentInput.value);
 
-                await fetch(SCRIPT_URL, {
-                    method: 'POST',
-                    body: formData
-                });
-
-                nameInput.value = '';
-                commentInput.value = '';
-                alert('บันทึกความคิดเห็นเรียบร้อยแล้ว!');
-                
-                // รอ 1.5 วินาทีให้ Google Sheets บันทึกเสร็จ แล้วดึงคอมเมนต์มาโชว์
-                setTimeout(loadComments, 1500);
-            } catch (error) {
-                alert('เกิดข้อผิดพลาดในการส่งข้อความ');
-            } finally {
-                btn.disabled = false;
-                btn.innerHTML = '<i class="fa-solid fa-paper-plane"></i> <span>ส่งข้อความ</span>';
-            }
-        });
-
-                nameInput.value = '';
-                commentInput.value = '';
-                alert('บันทึกความคิดเห็นเรียบร้อยแล้ว!');
-                setTimeout(loadComments, 1000); // โหลดคอมเมนต์ใหม่
-            } catch (error) {
-                alert('เกิดข้อผิดพลาดในการส่งข้อความ');
-            } finally {
-                btn.disabled = false;
-                btn.innerHTML = '<i class="fa-solid fa-paper-plane"></i> <span>ส่งข้อความ</span>';
-            }
-        });
-
-        // ป้องกัน XSS Attack
-        function escapeHtml(text) {
-            return String(text).replace(/[&<>"']/g, function(m) {
-                return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[m];
+            await fetch(SCRIPT_URL, {
+                method: 'POST',
+                body: formData
             });
-        }
 
-        // โหลดคอมเมนต์ทันทีเมื่อเปิดหน้าเว็บ
-        loadComments();
+            nameInput.value = '';
+            commentInput.value = '';
+            alert('บันทึกความคิดเห็นเรียบร้อยแล้ว!');
+            
+            setTimeout(loadComments, 1000);
+        } catch (error) {
+            alert('เกิดข้อผิดพลาดในการส่งข้อความ');
+        } finally {
+            btn.disabled = false;
+            btn.innerHTML = '<span>ส่งข้อความ</span>';
+        }
+    });
+
+    loadComments();
+</script>
     </script>
 
         <!-- Contact Section -->
