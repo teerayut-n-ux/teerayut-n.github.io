@@ -281,43 +281,61 @@
         }
 
         document.getElementById('comment-form').addEventListener('submit', async (e) => {
-            e.preventDefault();
-            const btn = document.getElementById('submit-btn');
-            const nameInput = document.getElementById('comment-name');
-            const commentInput = document.getElementById('comment-text');
+    e.preventDefault();
+    const btn = document.getElementById('submit-btn');
+    const nameInput = document.getElementById('comment-name');
+    const commentInput = document.getElementById('comment-text');
+    const listContainer = document.getElementById('comments-list');
 
-            btn.disabled = true;
-            btn.innerHTML = '<i class="fa-solid fa-spinner animate-spin"></i> <span>กำลังบันทึก...</span>';
+    const nameVal = nameInput.value;
+    const commentVal = commentInput.value;
 
-            try {
-                const formData = new URLSearchParams();
-                formData.append('name', nameInput.value);
-                formData.append('comment', commentInput.value);
+    // 1. นำข้อมูลขึ้นแสดงบนหน้าเว็บทันทีแบบ Real-time (Optimistic Update)
+    const now = new Date();
+    const timeStr = `${String(now.getDate()).padStart(2, '0')}/${String(now.getMonth() + 1).padStart(2, '0')}/${now.getFullYear()} ${String(now.getHours()).padStart(2, '0')}:${String(now.getMinutes()).padStart(2, '0')}`;
+    
+    const newCommentHTML = `
+        <div class="bg-slate-900/80 border border-brand-accent/50 rounded-lg p-4 space-y-2 text-left animate-pulse">
+            <div class="flex items-center justify-between">
+                <span class="font-bold text-sm text-cyan-400">${escapeHtml(nameVal)}</span>
+                <span class="text-[10px] font-mono text-slate-500">${timeStr} (กำลังบันทึก...)</span>
+            </div>
+            <p class="text-slate-300 text-sm leading-relaxed">${escapeHtml(commentVal)}</p>
+        </div>
+    `;
 
-                // ส่งข้อมูลด้วย mode: 'no-cors' เพื่อแก้ปัญหา CORS Block ของ Google Script
-                await fetch(SCRIPT_URL, {
-                    method: 'POST',
-                    mode: 'no-cors',
-                    headers: {
-                        'Content-Type': 'application/x-www-form-urlencoded'
-                    },
-                    body: formData
-                });
+    // ถ้าเดิมไม่มีคอมเมนต์ ให้ล้างข้อความ "ยังไม่มีความคิดเห็น" ออกก่อน
+    if (listContainer.innerHTML.includes('ยังไม่มีความคิดเห็น')) {
+        listContainer.innerHTML = '';
+    }
+    
+    // ยัดข้อความใหม่เข้าด้านบนสุดทันที
+    listContainer.insertAdjacentHTML('afterbegin', newCommentHTML);
 
-                nameInput.value = '';
-                commentInput.value = '';
-                alert('ส่งความคิดเห็นเรียบร้อยแล้ว!');
-                
-                // รอให้ Google Sheet ประมวลผล 1.5 วินาที แล้วโหลดข้อมูลใหม่
-                setTimeout(loadComments, 1500);
-            } catch (error) {
-                console.error(error);
-                alert('เกิดข้อผิดพลาดในการส่งข้อความ');
-            } finally {
-                btn.disabled = false;
-                btn.innerHTML = '<i class="fa-solid fa-paper-plane"></i> <span>ส่งข้อความ</span>';
-            }
+    // ล้างค่าในช่องกรอกทันที
+    nameInput.value = '';
+    commentInput.value = '';
+
+    // 2. ส่งข้อมูลไปบันทึกใน Google Sheet อยู่เบื้องหลัง
+    try {
+        const formData = new URLSearchParams();
+        formData.append('name', nameVal);
+        formData.append('comment', commentVal);
+
+        fetch(SCRIPT_URL, {
+            method: 'POST',
+            mode: 'no-cors',
+            headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+            body: formData
+        }).then(() => {
+            // บันทึกเสร็จแล้วดึงข้อมูลจริงเพื่ออัปเดตสถานะให้สมบูรณ์
+            loadComments();
         });
+
+    } catch (error) {
+        console.error("Error saving comment:", error);
+    }
+});
 
         // เรียกใช้งานโหลดความคิดเห็นทันทีเมื่อเปิดหน้าเว็บ
         loadComments();
