@@ -24,7 +24,7 @@
     <header class="sticky top-0 z-50 backdrop-blur-md bg-brand-dark/80 border-b border-brand-border">
         <div class="max-w-6xl mx-auto px-4 h-16 flex items-center justify-between">
             <a href="index.html" class="font-mono font-bold text-lg text-white">TEERAYUT<span class="text-brand-light">.NET</span></a>
-            <a href="index.html" class="inline-flex items-center space-x-2 text-xs font-mono bg-slate-800 hover:bg-slate-700 text-slate-200 px-4 py-2 rounded-md transition">
+            <a href="index.html" class="inline-flex items-center space-x-2 text-xs font-mono bg-slate-800 hover:bg-slate-700 text-slate-200 px-4 py-2 rounded-md transition border border-slate-700">
                 <i class="fa-solid fa-arrow-left"></i>
                 <span>กลับหน้าหลัก</span>
             </a>
@@ -38,23 +38,87 @@
             <p class="text-slate-400 text-sm">รวมผลงานการออกแบบระบบเครือข่ายและการเขียนสคริปต์ Network Automation</p>
         </div>
 
-        <!-- ตัวอย่างการ์ดแสดงโปรเจกต์ -->
+        <!-- Projects Grid -->
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <!-- Project Card 1 -->
-            <div class="bg-brand-card border border-brand-border rounded-xl p-6 space-y-4">
-                <div class="flex items-center justify-between">
-                    <span class="text-xs font-mono bg-blue-500/10 text-brand-light border border-blue-500/20 px-2.5 py-1 rounded">Cisco pyATS</span>
-                    <i class="fa-solid fa-code text-slate-500"></i>
+            
+            <!-- Project Card 1: Cisco Packet Tracer -->
+            <div class="bg-brand-card border border-brand-border hover:border-brand-accent/50 rounded-xl p-6 space-y-4 flex flex-col justify-between transition">
+                <div class="space-y-4">
+                    <div class="flex items-center justify-between">
+                        <span class="text-xs font-mono bg-blue-500/10 text-brand-light border border-blue-500/20 px-2.5 py-1 rounded">Cisco Packet Tracer</span>
+                        <i class="fa-solid fa-network-wired text-brand-light"></i>
+                    </div>
+                    <h2 class="text-xl font-bold text-white">Enterprise Network Infrastructure Simulation</h2>
+                    <p class="text-sm text-slate-400 leading-relaxed">
+                        การจำลองและออกแบบโครงสร้างระบบเครือข่ายสำหรับองค์กรขนาดกลาง ครอบคลุมการจัดสรร VLAN, Trunking, Inter-VLAN Routing และกำหนดเส้นทางด้วย OSPF Protocol
+                    </p>
+                    <div class="space-y-2 bg-slate-900/80 p-3 rounded-lg text-xs font-mono text-slate-400 border border-slate-800">
+                        <div class="text-brand-light font-bold">Key Technical Features:</div>
+                        <ul class="list-disc list-inside space-y-1">
+                            <li>VLAN Segmentation & 802.1Q Trunking</li>
+                            <li>OSPF Routing Protocol Configuration</li>
+                            <li>Access Control Lists (ACLs) Security</li>
+                        </ul>
+                    </div>
                 </div>
-                <h2 class="text-xl font-bold text-white">Automated Network Test & Report</h2>
-                <p class="text-sm text-slate-400 leading-relaxed">
-                    สคริปต์ Python ตรวจสอบสถานะอุปกรณ์เครือข่ายอัตโนมัติด้วย pyATS Framework พร้อมสรุป Health Check Report
-                </p>
                 <div class="pt-2 border-t border-slate-800 flex justify-between items-center text-xs font-mono text-slate-500">
-                    <span>Python / pyATS / Genie</span>
-                    <a href="#" class="text-brand-light hover:underline">ดูโค้ดบน GitHub <i class="fa-solid fa-external-link text-[10px]"></i></a>
+                    <span>Packet Tracer / CLI</span>
+                    <span class="text-emerald-400"><i class="fa-solid fa-check-circle mr-1"></i> Completed</span>
                 </div>
             </div>
+
+            <!-- Project Card 2: Cisco pyATS Health Check -->
+            <div class="bg-brand-card border border-brand-border hover:border-brand-accent/50 rounded-xl p-6 space-y-4 flex flex-col justify-between transition">
+                <div class="space-y-4">
+                    <div class="flex items-center justify-between">
+                        <span class="text-xs font-mono bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 px-2.5 py-1 rounded">Cisco pyATS</span>
+                        <i class="fa-solid fa-code text-emerald-400"></i>
+                    </div>
+                    <h2 class="text-xl font-bold text-white">Automated Network Test & Health Report</h2>
+                    <p class="text-sm text-slate-400 leading-relaxed">
+                        สคริปต์ Python ตรวจสอบสถานะอุปกรณ์เครือข่ายอัตโนมัติด้วย pyATS / Genie Framework เช่น CPU Utilization, Interface Status และสรุป Health Check Report
+                    </p>
+                    <div class="space-y-2 bg-slate-900/80 p-3 rounded-lg text-xs font-mono text-slate-400 border border-slate-800">
+                        <div class="text-emerald-400 font-bold">Key Technical Features:</div>
+                        <ul class="list-disc list-inside space-y-1">
+                            <li>pyATS Testbed Configuration</li>
+                            <li>Parsed CLI Output to Structured JSON</li>
+                            <li>Automated Summary Report Generation</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="pt-2 border-t border-slate-800 flex justify-between items-center text-xs font-mono text-slate-500">
+                    <span>Python / pyATS / Genie</span>
+                    <span class="text-emerald-400"><i class="fa-solid fa-check-circle mr-1"></i> Completed</span>
+                </div>
+            </div>
+
+            <!-- Project Card 3: Config Backup Script -->
+            <div class="bg-brand-card border border-brand-border hover:border-brand-accent/50 rounded-xl p-6 space-y-4 flex flex-col justify-between transition">
+                <div class="space-y-4">
+                    <div class="flex items-center justify-between">
+                        <span class="text-xs font-mono bg-purple-500/10 text-purple-400 border border-purple-500/20 px-2.5 py-1 rounded">Network Automation</span>
+                        <i class="fa-solid fa-file-code text-purple-400"></i>
+                    </div>
+                    <h2 class="text-xl font-bold text-white">Multi-Device Config Backup Script</h2>
+                    <p class="text-sm text-slate-400 leading-relaxed">
+                        สคริปต์อำนวยความสะดวกในการสำรองข้อมูลการตั้งค่า (Running Configuration) ของอุปกรณ์เครือข่ายหลายเครื่องพร้อมกันผ่าน SSH และจัดเก็บไฟล์ตามวันที่อัตโนมัติ
+                    </p>
+                    <div class="space-y-2 bg-slate-900/80 p-3 rounded-lg text-xs font-mono text-slate-400 border border-slate-800">
+                        <div class="text-purple-400 font-bold">Key Technical Features:</div>
+                        <ul class="list-disc list-inside space-y-1">
+                            <li>Netmiko / SSH Connections Handling</li>
+                            <li>Automated Directory & Timestamp Naming</li>
+                            <li>Error Handling for Unreachable Hosts</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="pt-2 border-t border-slate-800 flex justify-between items-center text-xs font-mono text-slate-500">
+                    <span>Python / Netmiko / Linux</span>
+                    <span class="text-emerald-400"><i class="fa-solid fa-check-circle mr-1"></i> Completed</span>
+                </div>
+            </div>
+
         </div>
     </main>
 
