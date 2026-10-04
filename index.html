@@ -78,53 +78,109 @@
     <main class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12 flex-grow space-y-16">
 
         <!-- Hero & Profile Section -->
-        <section id="about" class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center pt-4">
-            <div class="lg:col-span-8 space-y-6">
-                <div class="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-brand-border/60 border border-slate-700 text-xs font-mono text-brand-light">
-                    <i class="fa-solid fa-network-wired"></i>
-                    <span>COMPUTER ENGINEERING STUDENT & NETWORK ASPIRANT</span>
-                </div>
-                
-                <h1 class="text-3xl sm:text-5xl font-bold text-white tracking-tight">
-                    <span>นายธีระยุทธ นิลสุวรรณ</span>
-                    <span class="block mt-2 text-transparent bg-clip-text bg-gradient-to-r from-brand-light to-blue-500">
-                        Network Engineer
-                    </span>
-                </h1>
-                
-                <p class="text-slate-300 text-lg leading-relaxed font-light border-l-2 border-brand-accent pl-4 py-1 italic">
-                    "การเรียนรู้อยู่ที่การไขว่คว้า ไม่มองหาคงสิ้นทางเจอ"
-                </p>
+        <!-- Hero / About Section (Digital Business Card Style) -->
+<section id="about" class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center pt-4">
+    
+    <!-- ฝั่งซ้าย: ข้อมูลส่วนตัวและแนะนำตัว -->
+    <div class="lg:col-span-7 space-y-6">
+        
+        <!-- Badge สถานะ -->
+        <div class="flex flex-wrap gap-2">
+            <span class="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-brand-accent/10 border border-brand-accent/30 text-xs font-mono text-brand-light">
+                <i class="fa-solid fa-graduation-cap"></i>
+                <span>COMPUTER ENGINEERING STUDENT</span>
+            </span>
+            <span class="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-xs font-mono text-emerald-400">
+                <i class="fa-solid fa-circle-check"></i>
+                <span>READY FOR WORK / INTERNSHIP</span>
+            </span>
+        </div>
 
-                <p class="text-slate-400 text-base leading-relaxed">
-                    นักศึกษาวิศวกรรมคอมพิวเตอร์ มหาวิทยาลัยเทคโนโลยีราชมงคลพระนคร มุ่งมั่นศึกษาและพัฒนาทักษะด้านระบบเครือข่ายคอมพิวเตอร์ (Network Infrastructure) การเขียนโปรแกรมสำหรับ Network Automation และมาตรฐานศูนย์ข้อมูล (Data Center Standards) เพื่อพร้อมก้าวสู่การทำงานในสายงาน Network Engineer
-                </p>
+        <!-- ชื่อ และ ตำแหน่ง -->
+        <div>
+            <h1 class="text-3xl sm:text-4xl font-bold text-white tracking-tight">
+                นายธีระยุทธ นิลสุวรรณ
+            </h1>
+            <p class="text-xl font-bold text-brand-light mt-1 font-mono">
+                Aspiring Network & Automation Engineer
+            </p>
+        </div>
 
-                <div class="flex flex-wrap gap-4 pt-2">
-                    <a href="tel:0944569385" class="flex items-center space-x-2 bg-brand-card hover:bg-slate-800 border border-brand-border px-4 py-2.5 rounded-lg text-sm text-slate-200 transition">
-                        <i class="fa-solid fa-phone text-brand-light"></i>
-                        <span>094-456-9385</span>
-                    </a>
-                    <a href="mailto:teerayut-n@rmutp.ac.th" class="flex items-center space-x-2 bg-brand-card hover:bg-slate-800 border border-brand-border px-4 py-2.5 rounded-lg text-sm text-slate-200 transition">
-                        <i class="fa-solid fa-at text-brand-light"></i>
-                        <span>teerayut-n@rmutp.ac.th</span>
-                    </a>
-                </div>
+        <!-- คำนิยาม / คติพจน์ -->
+        <blockquote class="border-l-2 border-brand-accent pl-4 py-1 text-slate-400 text-sm italic font-mono bg-slate-900/40 rounded-r">
+            "การเรียนรู้อยู่ที่การไขว่คว้า ไม่มองหาคงสิ้นทางเจอ"
+        </blockquote>
+
+        <!-- บทสรุปแนะนำตัว (Bio) -->
+        <p class="text-slate-300 text-sm leading-relaxed">
+            นักศึกษาวิศวกรรมคอมพิวเตอร์ มหาวิทยาลัยเทคโนโลยีราชมงคลพระนคร มีความมุ่งมั่นและสนใจในสายงาน **Network Infrastructure** และ **Network Automation** มีทักษะการคอนฟิกอุปกรณ์เครือข่ายพื้นฐาน การออกแบบระบบ IP Addressing, Routing & Switching และการเขียนสคริปต์ Python ร่วมกับ Cisco pyATS เพื่อเพิ่มประสิทธิภาพในการบริหารจัดการระบบ
+        </p>
+
+        <!-- ตารางข้อมูลเบื้องต้น (Personal Details Grid) -->
+        <div class="grid grid-cols-2 gap-3 bg-brand-card/80 border border-brand-border p-4 rounded-xl text-xs font-mono">
+            <div class="space-y-1">
+                <span class="text-slate-500 block">สถาบันการศึกษา:</span>
+                <span class="text-slate-200 font-sans font-medium">มทร.พระนคร (RMUTP)</span>
             </div>
-
-            <!-- Profile Picture Container -->
-            <div class="lg:col-span-4 flex justify-center">
-                <div class="relative w-64 h-64 sm:w-72 sm:h-72 rounded-2xl overflow-hidden bg-brand-card border-2 border-brand-border shadow-2xl p-2 group">
-                    <div class="w-full h-full rounded-xl overflow-hidden relative flex items-center justify-center bg-slate-900">
-                        <img id="profile-img" src="profile.jpg" alt="ธีระยุทธ นิลสุวรรณ" class="w-full h-full object-cover object-center" onerror="document.getElementById('profile-img').classList.add('hidden'); document.getElementById('avatar-fallback').classList.remove('hidden');">
-                        <div id="avatar-fallback" class="hidden flex-col items-center justify-center text-slate-500 space-y-3">
-                            <i class="fa-solid fa-user-gear text-6xl text-brand-light"></i>
-                            <span class="text-xs font-mono text-slate-400">Teerayut Ninsuwan</span>
-                        </div>
-                    </div>
-                </div>
+            <div class="space-y-1">
+                <span class="text-slate-500 block">สาขาวิชา:</span>
+                <span class="text-slate-200 font-sans font-medium">วิศวกรรมคอมพิวเตอร์</span>
             </div>
-        </section>
+            <div class="space-y-1">
+                <span class="text-slate-500 block">ตำแหน่งที่สนใจ:</span>
+                <span class="text-brand-light font-sans font-medium">Network Engineer / System Admin</span>
+            </div>
+            <div class="space-y-1">
+                <span class="text-slate-500 block">พื้นที่ปฏิบัติงาน:</span>
+                <span class="text-slate-200 font-sans font-medium">กรุงเทพฯ และปริมณฑล</span>
+            </div>
+        </div>
+
+        <!-- ปุ่มการติดต่อ & Resume -->
+        <div class="flex flex-wrap items-center gap-3 pt-2">
+            <!-- ปุ่ม Download Resume -->
+            <a href="resume.pdf" download="Teerayut_Resume.pdf" target="_blank" class="inline-flex items-center space-x-2 bg-brand-accent hover:bg-blue-600 text-white px-4 py-2.5 rounded-lg text-xs font-mono font-semibold transition shadow-lg shadow-brand-accent/20">
+                <i class="fa-solid fa-file-arrow-down text-sm"></i>
+                <span>Download Resume (PDF)</span>
+            </a>
+            
+            <!-- ปุ่มโทรศัพท์ -->
+            <a href="tel:0944569385" class="inline-flex items-center space-x-2 bg-slate-900/80 hover:bg-slate-800 border border-slate-700/80 px-3.5 py-2.5 rounded-lg text-xs font-mono text-slate-200 transition">
+                <i class="fa-solid fa-phone text-brand-light"></i>
+                <span>094-456-9385</span>
+            </a>
+            
+            <!-- ปุ่มอีเมล -->
+            <a href="mailto:teerayut-n@rmutp.ac.th" class="inline-flex items-center space-x-2 bg-slate-900/80 hover:bg-slate-800 border border-slate-700/80 px-3.5 py-2.5 rounded-lg text-xs font-mono text-slate-200 transition">
+                <i class="fa-solid fa-at text-brand-light"></i>
+                <span>teerayut-n@rmutp.ac.th</span>
+            </a>
+        </div>
+
+    </div>
+
+    <!-- ฝั่งขวา: รูปถ่ายโปรไฟล์ & ลิงก์โซเชียล -->
+    <div class="lg:col-span-5 flex flex-col items-center justify-center space-y-4">
+        <div class="relative w-full max-w-sm rounded-2xl overflow-hidden bg-brand-card border-2 border-brand-border shadow-2xl p-2 group">
+            <div class="w-full aspect-[4/5] rounded-xl overflow-hidden relative flex items-center justify-center bg-slate-900">
+                <img id="profile-img" src="profile.jpg" alt="นายธีระยุทธ นิลสุวรรณ" class="w-full h-full object-cover object-center">
+            </div>
+        </div>
+
+        <!-- Social Links (GitHub / LinkedIn) -->
+        <div class="flex items-center space-x-3 text-xs font-mono">
+            <a href="https://github.com" target="_blank" class="flex items-center space-x-2 bg-slate-900/90 hover:bg-slate-800 border border-slate-700 text-slate-300 px-4 py-2 rounded-lg transition">
+                <i class="fa-brands fa-github text-sm text-white"></i>
+                <span>GitHub Portfolio</span>
+            </a>
+            <a href="https://linkedin.com" target="_blank" class="flex items-center space-x-2 bg-slate-900/90 hover:bg-slate-800 border border-slate-700 text-slate-300 px-4 py-2 rounded-lg transition">
+                <i class="fa-brands fa-linkedin text-sm text-blue-400"></i>
+                <span>LinkedIn</span>
+            </a>
+        </div>
+    </div>
+
+</section>
 
         <!-- Technical Skills Section -->
         <section id="skills" class="space-y-8">
